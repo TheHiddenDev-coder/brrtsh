@@ -42,7 +42,7 @@ fn print_title() {
 
 enum Commands {
     Exit,
-    Echo,
+    Echo, // TODO: extend command parsing to support arguments. e.g. "echo hello world" -> Commands::Echo(String)
     MakeFile,
     ReadFile,
     Unknown,
