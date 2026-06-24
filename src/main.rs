@@ -14,7 +14,9 @@ fn main() {
             .read_line(&mut cmd)
             .expect("Failed to read line"); // TODO: add actual error handling
 
-        let cmd = match cmd.as_str() {
+        let cmd = cmd.trim();
+
+        let cmd = match cmd {
             "exit" => Commands::Exit,
             _ => Commands::Unknown,
         };
