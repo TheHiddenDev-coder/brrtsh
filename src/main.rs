@@ -14,10 +14,9 @@ fn main() {
             .read_line(&mut cmd)
             .expect("Failed to read line"); // TODO: add actual error handling
 
-        let cmd = cmd.trim();
-
-        let cmd = match cmd {
+        let cmd = match cmd.trim() {
             "exit" => Commands::Exit,
+            "help" => Commands::Help,
             "echo" => Commands::Echo,
             "mkfile" => Commands::MakeFile,
             "readfile" => Commands::ReadFile,
@@ -26,6 +25,7 @@ fn main() {
 
         match cmd {
             Commands::Exit => break,
+            Commands::Help => handle_help(),
             Commands::Unknown => println!("Unknown Command"),
             _ => println!("Not implemented yet"),
         }
@@ -37,12 +37,23 @@ fn print_title() {
     println!("| __ )|  _ \\|  _ \\_   _/ ___|| | | |");
     println!("|  _ \\| |_) | |_) || | \\___ \\| |_| |");
     println!("| |_) |  _ <|  _ < | |  ___) |  _  |");
-    println!("|____/|_| \\_\\_| \\_\\|_| |____/|_| |_|")
+    println!("|____/|_| \\_\\_| \\_\\|_| |____/|_| |_|");
+    println!("BRRTSHv0.1 type `help` for command list");
+}
+
+fn handle_help() {
+    println!("Command list:");
+    println!("\texit -> exit program");
+    println!("\techo -> print to screen");
+    println!("\thelp -> list commands");
+    println!("\tmkfile -> create file");
+    println!("\treadfile -> read contents of file");
 }
 
 enum Commands {
     Exit,
     Echo, // TODO: extend command parsing to support arguments. e.g. "echo hello world" -> Commands::Echo(String)
+    Help,
     MakeFile,
     ReadFile,
     Unknown,
