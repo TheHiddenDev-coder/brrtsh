@@ -26,6 +26,7 @@ pub fn handle_help() {
     println!("\thelp -> list commands");
     println!("\tmkfile -> create file");
     println!("\treadfile -> read contents of file");
+    println!("\tprintbanner -> print banner that shows at startup")
 }
 
 // TODO: Make echo actually behave like echo, you dummy!!
