@@ -1,3 +1,5 @@
+use std::io::{self, Write};
+
 pub enum Commands {
     Exit,
     Echo, // TODO: extend command parsing to support arguments. e.g. "echo hello world" -> Commands::Echo(String)
@@ -23,4 +25,16 @@ pub fn handle_help() {
     println!("\thelp -> list commands");
     println!("\tmkfile -> create file");
     println!("\treadfile -> read contents of file");
+}
+
+// TODO: Make echo actually behave like echo, you dummy!!
+pub fn handle_echo() {
+    let mut input: String = String::new();
+    print!("Enter text to echo: ");
+    io::stdout().flush().expect("Failed to flush");
+    io::stdin()
+        .read_line(&mut input)
+        .expect("Falied to read line");
+
+    println!("{}", input)
 }

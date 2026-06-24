@@ -26,6 +26,7 @@ fn main() {
         match cmd {
             command_handler::Commands::Exit => break,
             command_handler::Commands::Help => command_handler::handle_help(),
+            command_handler::Commands::Echo => command_handler::handle_echo(),
             command_handler::Commands::Unknown => println!("Unknown Command"),
             _ => println!("Not implemented yet"),
         }
