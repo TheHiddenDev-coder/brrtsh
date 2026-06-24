@@ -18,12 +18,16 @@ fn main() {
 
         let cmd = match cmd {
             "exit" => Commands::Exit,
+            "echo" => Commands::Echo,
+            "mkfile" => Commands::MakeFile,
+            "readfile" => Commands::ReadFile,
             _ => Commands::Unknown,
         };
 
         match cmd {
             Commands::Exit => break,
-            _ => println!("Unknown Command"),
+            Commands::Unknown => println!("Unknown Command"),
+            _ => println!("Not implemented yet"),
         }
     }
 }
