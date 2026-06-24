@@ -6,6 +6,7 @@ pub enum Commands {
     Help,
     MakeFile,
     ReadFile,
+    PrintBanner,
     Unknown,
 }
 

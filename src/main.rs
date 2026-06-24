@@ -20,6 +20,7 @@ fn main() {
             "echo" => command_handler::Commands::Echo,
             "mkfile" => command_handler::Commands::MakeFile,
             "readfile" => command_handler::Commands::ReadFile,
+            "printbanner" => command_handler::Commands::PrintBanner,
             _ => command_handler::Commands::Unknown,
         };
 
@@ -27,6 +28,7 @@ fn main() {
             command_handler::Commands::Exit => break,
             command_handler::Commands::Help => command_handler::handle_help(),
             command_handler::Commands::Echo => command_handler::handle_echo(),
+            command_handler::Commands::PrintBanner => command_handler::print_title(),
             command_handler::Commands::Unknown => println!("Unknown Command"),
             _ => println!("Not implemented yet"),
         }
