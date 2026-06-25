@@ -2,7 +2,7 @@ use std::io::{self, Write};
 
 pub enum Commands {
     Exit,
-    Echo, // TODO: extend command parsing to support arguments. e.g. "echo hello world" -> Commands::Echo(String)
+    Echo(String),
     Help,
     MakeFile,
     ReadFile,
@@ -11,10 +11,14 @@ pub enum Commands {
 }
 
 pub fn parse_commands(input: &str) -> Commands {
-    match input {
+    let mut parts = input.splitn(2, ' ');
+    let cmd = parts.next().unwrap_or("");
+    let args = parts.next().unwrap_or("");
+
+    match cmd {
         "exit" => Commands::Exit,
         "help" => Commands::Help,
-        "echo" => Commands::Echo,
+        "echo" => Commands::Echo(args.to_string()),
         "mkfile" => Commands::MakeFile,
         "readfile" => Commands::ReadFile,
         "printbanner" => Commands::PrintBanner,
@@ -29,27 +33,20 @@ pub fn print_title() {
     println!("| |_) |  _ <|  _ < | |  ___) |  _  |");
     println!("|____/|_| \\_\\_| \\_\\|_| |____/|_| |_|");
     println!();
-    println!("BRRTSH v0.1 (late-alpha)");
+    println!("BRRTSH v0.2 (late-alpha)");
     println!("type `help` for command list");
 }
 
 pub fn handle_help() {
     println!("Command list:");
     println!("\texit -> exit program");
-    println!("\techo -> print to screen");
+    println!("\techo <text> -> print text to screen");
     println!("\thelp -> list commands");
     println!("\tmkfile -> create file");
     println!("\treadfile -> read contents of file");
     println!("\tprintbanner -> print banner that shows at startup")
 }
 
-// TODO: Make echo actually behave like echo, you dummy!!
-pub fn handle_echo() -> io::Result<()> {
-    let mut input: String = String::new();
-    print!("Enter text to echo: ");
-    io::stdout().flush()?;
-    io::stdin().read_line(&mut input)?;
-
-    println!("{}", input.trim_end());
-    Ok(())
+pub fn handle_echo(text: &str) {
+    println!("{}", text);
 }
