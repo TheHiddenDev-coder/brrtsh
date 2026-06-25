@@ -16,7 +16,9 @@ pub fn print_title() {
     println!("|  _ \\| |_) | |_) || | \\___ \\| |_| |");
     println!("| |_) |  _ <|  _ < | |  ___) |  _  |");
     println!("|____/|_| \\_\\_| \\_\\|_| |____/|_| |_|");
-    println!("BRRTSHv0.1 type `help` for command list");
+    println!();
+    println!("BRRTSH v0.1 (late-alpha)");
+    println!("type `help` for command list");
 }
 
 pub fn handle_help() {
@@ -30,13 +32,12 @@ pub fn handle_help() {
 }
 
 // TODO: Make echo actually behave like echo, you dummy!!
-pub fn handle_echo() {
+pub fn handle_echo() -> io::Result<()> {
     let mut input: String = String::new();
     print!("Enter text to echo: ");
-    io::stdout().flush().expect("Failed to flush");
-    io::stdin()
-        .read_line(&mut input)
-        .expect("Falied to read line");
+    io::stdout().flush()?;
+    io::stdin().read_line(&mut input)?;
 
-    println!("{}", input)
+    println!("{}", input.trim_end());
+    Ok(())
 }
