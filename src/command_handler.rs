@@ -10,6 +10,18 @@ pub enum Commands {
     Unknown,
 }
 
+pub fn parse_commands(input: &str) -> Commands {
+    match input {
+        "exit" => Commands::Exit,
+        "help" => Commands::Help,
+        "echo" => Commands::Echo,
+        "mkfile" => Commands::MakeFile,
+        "readfile" => Commands::ReadFile,
+        "printbanner" => Commands::PrintBanner,
+        _ => Commands::Unknown,
+    }
+}
+
 pub fn print_title() {
     println!(" ____  ____  ____ _____ ____  _   _");
     println!("| __ )|  _ \\|  _ \\_   _/ ___|| | | |");

@@ -20,15 +20,7 @@ fn main() {
             continue;
         }
 
-        let cmd = match cmd.trim() {
-            "exit" => command_handler::Commands::Exit,
-            "help" => command_handler::Commands::Help,
-            "echo" => command_handler::Commands::Echo,
-            "mkfile" => command_handler::Commands::MakeFile,
-            "readfile" => command_handler::Commands::ReadFile,
-            "printbanner" => command_handler::Commands::PrintBanner,
-            _ => command_handler::Commands::Unknown,
-        };
+        let cmd = command_handler::parse_commands(cmd.trim());
 
         match cmd {
             command_handler::Commands::Exit => break,
